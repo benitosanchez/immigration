@@ -6,15 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Requirement {
 
-    @SerializedName("question")
-    @Expose
-    private String question;
-    @SerializedName("eval_string")
-    @Expose
-    private String evalString;
-    @SerializedName("user_info_key")
-    @Expose
-    private String userInfoKey;
+    @SerializedName("question") @Expose private String question;
+    @SerializedName("eval_string") @Expose private String evalString;
+    @SerializedName("user_info_key") @Expose private String userInfoKey;
 
     public String getQuestion() {
         return question;
