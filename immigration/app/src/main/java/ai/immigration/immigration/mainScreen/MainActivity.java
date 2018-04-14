@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import ai.immigration.immigration.R;
+import ai.immigration.immigration.data.Evaluator;
+import ai.immigration.immigration.data.UserState;
 import ai.immigration.immigration.questionsScreen.QuestionsActivity;
 
 public class MainActivity extends AppCompatActivity {

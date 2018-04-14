@@ -7,6 +7,9 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import ai.immigration.immigration.data.Evaluator;
+import ai.immigration.immigration.data.UserState;
+
 import static org.junit.Assert.*;
 
 /**
@@ -20,7 +23,22 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
         assertEquals("ai.immigration.immigration", appContext.getPackageName());
+    }
+
+    @Test
+    public void evaluate_age() throws Exception {
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                Context appContext = InstrumentationRegistry.getTargetContext();
+                Evaluator eval = new Evaluator(appContext);
+                UserState user = new UserState();
+                user.SetUserInfo("age", "18");
+                eval.Evaluate(user, "user['age'] < 21");
+            }
+        });
+
+        //assertEquals("ai.immigration.immigration", appContext.getPackageName());
     }
 }
