@@ -34,39 +34,48 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67">
+        app:layout_constraintVertical_bias="0.826">
 
 
-        <ImageButton
+        <Button
             android:id="@+id/green_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="@drawable/button_style"
-            app:srcCompat="@drawable/ic_home"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/ic_home"
+            android:text="Green Card"
+            android:textColor="#424242"
             tools:layout_editor_absoluteX="144dp"
             tools:layout_editor_absoluteY="10dp" />
 
-
-        <ImageButton
+        <Button
             android:id="@+id/travel_visa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="@drawable/button_style"
-            app:srcCompat="@drawable/ic_travel"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/ic_travel"
+            android:text="Travel Visa"
+            android:textColor="#424242"
             tools:layout_editor_absoluteX="144dp"
             tools:layout_editor_absoluteY="333dp" />
 
-        <ImageButton
+        <Button
             android:id="@+id/daca_renewal"
             android:layout_width="match_parent"
             android:layout_height="122dp"
             android:layout_margin="15dp"
             android:background="@drawable/button_style"
-            app:srcCompat="@drawable/ic_daca"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/ic_daca"
+            android:text="Daca Renewal"
+            android:textColor="#424242"
             tools:layout_editor_absoluteX="144dp"
             tools:layout_editor_absoluteY="209dp" />
 
