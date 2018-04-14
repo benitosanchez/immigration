@@ -1,9 +1,14 @@
 package ai.immigration.immigration.questionsScreen;
 
+import android.os.Build;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
 import ai.immigration.immigration.R;
 import ai.immigration.immigration.data.model.Node;
@@ -20,6 +25,7 @@ public class QuestionsLayout extends Subscriber<HashMap<String, Node>> {
 
     @BindView(R.id.yes) Button mYesButton;
     @BindView(R.id.no) Button mNoButton;
+    @BindView(R.id.question) TextView mQuestionView;
 
     public QuestionsLayout(
             QuestionsActivity questionsActivity,
@@ -52,7 +58,14 @@ public class QuestionsLayout extends Subscriber<HashMap<String, Node>> {
 
     @Override
     public void onNext(HashMap<String, Node> listNodes) {
-        Log.d("NODE", listNodes.get("start").getDetails());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            listNodes.forEach(new BiConsumer<String, Node>() {
+                @Override
+                public void accept(String s, Node node) {
+
+                }
+            });
+        }
     }
 
     interface Listener {
