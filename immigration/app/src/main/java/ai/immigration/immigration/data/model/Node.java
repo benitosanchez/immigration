@@ -5,17 +5,11 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SpousePetition {
+public class Node {
 
-    @SerializedName("details")
-    @Expose
-    private String details;
-    @SerializedName("requirements")
-    @Expose
-    private List<Requirement__> requirements = null;
-    @SerializedName("next_node_ids")
-    @Expose
-    private List<String> nextNodeIds = null;
+    @SerializedName("details") @Expose private String details;
+    @SerializedName("requirements") @Expose private List<Requirement> requirements = null;
+    @SerializedName("next_node_ids") @Expose private List<String> nextNodeIds = null;
 
     public String getDetails() {
         return details;
@@ -25,11 +19,11 @@ public class SpousePetition {
         this.details = details;
     }
 
-    public List<Requirement__> getRequirements() {
+    public List<Requirement> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(List<Requirement__> requirements) {
+    public void setRequirements(List<Requirement> requirements) {
         this.requirements = requirements;
     }
 
