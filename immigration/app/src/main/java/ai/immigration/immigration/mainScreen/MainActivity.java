@@ -12,14 +12,14 @@ import ai.immigration.immigration.questionsScreen.QuestionsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton mDacaRenewal, mTravelVisa, mGreenCard;
+    Button mDacaRenewal, mTravelVisa, mGreenCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mGreenCard = (ImageButton) findViewById(R.id.green_card);
+        mGreenCard = findViewById(R.id.green_card);
         mGreenCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
