@@ -21,10 +21,7 @@ import butterknife.OnClick;
 import butterknife.compiler.ButterKnifeProcessor;
 import rx.Subscriber;
 
-public class QuestionsLayout extends Subscriber<HashMap<String, Node>> {
-
-    public static final int YES_NO_INPUT = 0;
-    public static final int EDIT_TEXT_INPUT = 1;
+public class QuestionsLayout extends Subscriber<HashMap<String, Node>> implements QuestionRendererInterface {
 
     private QuestionsActivity mQuestionsActivity;
     private Listener mListener;
@@ -34,16 +31,19 @@ public class QuestionsLayout extends Subscriber<HashMap<String, Node>> {
     @BindView(R.id.edit_text_input) LinearLayout mEditTextView;
     @BindView(R.id.yesNoLayout) LinearLayout mYesNoLayout;
     @BindView(R.id.question) TextView mQuestionView;
+    @BindView(R.id.next_button_layout) LinearLayout mNextButtonLayout;
 
     public QuestionsLayout(
             QuestionsActivity questionsActivity,
-            Listener listener) {
+            Listener listener,
+            AnswerInterface answerInterface) {
 
         mQuestionsActivity = questionsActivity;
         mListener = listener;
         mQuestionsActivity.setContentView(R.layout.activity_quesetions);
         ButterKnife.bind(this, mQuestionsActivity);
 
+        answerInterface.OnAnswer("");
     }
 
     @OnClick(R.id.yes)
@@ -67,20 +67,25 @@ public class QuestionsLayout extends Subscriber<HashMap<String, Node>> {
     /**
      * Switch to decide which input to receive from user.
      *
-     * @param inputType The input type represented by an {@link int}.
+     * @param questionType The quetion type represented by an {@link QuestionType}.
      */
-    public void updateUserInputType(int inputType) {
-        switch (inputType) {
-            case YES_NO_INPUT:
+    public void updateUserInputType(QuestionType questionType) {
+        switch (questionType) {
+            case YesNo:
                 mYesNoLayout.setVisibility(View.VISIBLE);
                 mEditTextView.setVisibility(View.GONE);
+                mNextButtonLayout.setVisibility(View.GONE);
                 break;
-            case EDIT_TEXT_INPUT:
+            case TextField:
                 mYesNoLayout.setVisibility(View.GONE);
                 mEditTextView.setVisibility(View.VISIBLE);
+                mNextButtonLayout.setVisibility(View.GONE);
                 break;
+            case DetailMessage:
+                mYesNoLayout.setVisibility(View.GONE);
+                mEditTextView.setVisibility(View.GONE);
+                mNextButtonLayout.setVisibility(View.VISIBLE);
             default:
-
         }
     }
 
@@ -94,6 +99,12 @@ public class QuestionsLayout extends Subscriber<HashMap<String, Node>> {
                 }
             });
         }
+    }
+
+    @Override
+    public void RenderNextQuestion(String message, QuestionType questionType) {
+        updateUserInputType(questionType);
+        mQuestionView.setText(message);
     }
 
     interface Listener {

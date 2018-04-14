@@ -24,7 +24,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
-public class QuestionsController implements QuestionsLayout.Listener {
+public class QuestionsController implements QuestionsLayout.Listener, AnswerInterface {
 
     private QuestionsActivity questionsActivity;
 
@@ -36,7 +36,7 @@ public class QuestionsController implements QuestionsLayout.Listener {
 
         DaggerQuestionsController_Component.builder()
                 .netComponent(((ImmigrationApp) questionsActivity.getApplicationContext()).getNetComponent())
-                .questionsControllerModule(new QuestionsControllerModule(questionsActivity, this))
+                .questionsControllerModule(new QuestionsControllerModule(questionsActivity, this, this))
                 .build()
                 .inject(this);
         retrofit.create(ImmigrationApi.class).getNodes()
@@ -55,6 +55,11 @@ public class QuestionsController implements QuestionsLayout.Listener {
         Log.d("Testing buttons", "no");
     }
 
+    @Override
+    public void OnAnswer(String answer) {
+
+    }
+
     @PerController
     @dagger.Component(dependencies = NetComponent.class, modules = QuestionsControllerModule.class)
     interface Component {
@@ -65,17 +70,20 @@ public class QuestionsController implements QuestionsLayout.Listener {
     static class QuestionsControllerModule {
         private final QuestionsActivity questionsActivity;
         private final QuestionsLayout.Listener listener;
+        private final AnswerInterface answerInterface;
 
         public QuestionsControllerModule(
                 QuestionsActivity questionsActivity,
-                QuestionsLayout.Listener listener) {
+                QuestionsLayout.Listener listener,
+                AnswerInterface answerInterface) {
             this.questionsActivity = questionsActivity;
             this.listener = listener;
+            this.answerInterface = answerInterface;
         }
 
         @Provides
         QuestionsLayout providesQuestionsLayout() {
-            return new QuestionsLayout(questionsActivity, listener);
+            return new QuestionsLayout(questionsActivity, listener, answerInterface);
         }
     }
 }
