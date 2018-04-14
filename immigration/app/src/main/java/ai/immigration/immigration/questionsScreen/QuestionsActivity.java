@@ -7,9 +7,11 @@ import ai.immigration.immigration.R;
 
 public class QuestionsActivity extends AppCompatActivity {
 
+    private QuestionsController questionsController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quesetions);
+        questionsController = new QuestionsController(this);
     }
 }
