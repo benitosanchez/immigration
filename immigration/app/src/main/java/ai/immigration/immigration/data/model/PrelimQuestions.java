@@ -7,15 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class PrelimQuestions {
 
-    @SerializedName("details")
-    @Expose
-    private String details;
-    @SerializedName("requirements")
-    @Expose
-    private List<Requirement> requirements = null;
-    @SerializedName("next_node_ids")
-    @Expose
-    private List<String> nextNodeIds = null;
+    @SerializedName("details") @Expose private String details;
+    @SerializedName("requirements") @Expose private List<Requirement> requirements = null;
+    @SerializedName("next_node_ids") @Expose private List<String> nextNodeIds = null;
 
     public String getDetails() {
         return details;
