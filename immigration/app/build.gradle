@@ -36,32 +36,32 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile 'com.jakewharton:butterknife-compiler:8.0.1'
+    implementation 'com.jakewharton:butterknife-compiler:8.0.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.1'
 
-    compile 'com.jakewharton:butterknife:8.0.1'
+    implementation 'com.jakewharton:butterknife:8.0.1'
     annotationProcessor 'com.jakewharton:butterknife:8.0.1'
 
 
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
     // Rx Java
-    compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    implementation 'io.reactivex:rxandroid:1.2.0'
+    implementation 'io.reactivex:rxjava:1.1.6'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
-    compile 'com.google.dagger:dagger:2.7'
-    compile 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.google.dagger:dagger:2.7'
+    implementation 'com.google.code.gson:gson:2.6.2'
 
-    compile 'com.google.android.gms:play-services-auth:9.0.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
+    implementation 'com.google.android.gms:play-services-auth:9.0.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 
-    provided 'org.glassfish:javax.annotation:10.0-b28'
-    provided 'javax.annotation:jsr250-api:1.0'
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
 }
