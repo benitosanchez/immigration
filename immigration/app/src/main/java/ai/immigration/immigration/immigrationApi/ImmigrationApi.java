@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ImmigrationApi {
 
-    @GET("/test")
+    @GET("/testman-d2065.appspot.com/flowchart_1.json")
     rx.Observable<HashMap<String, Node>> getNodes();
 }

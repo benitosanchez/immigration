@@ -3,18 +3,44 @@ package ai.immigration.immigration.questionsScreen;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.inject.Inject;
+
+import ai.immigration.immigration.ImmigrationApp;
+import ai.immigration.immigration.data.component.NetComponent;
 import ai.immigration.immigration.data.model.Node;
 import ai.immigration.immigration.data.model.Requirement;
+import ai.immigration.immigration.immigrationApi.ImmigrationApi;
+import dagger.Component;
+import dagger.Module;
+import dagger.Provides;
+import retrofit2.Retrofit;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class QuestionsController implements QuestionsLayout.Listener {
 
     private QuestionsActivity questionsActivity;
-    private QuestionsLayout questionsLayout;
+
+    @Inject Retrofit retrofit;
+    @Inject QuestionsLayout questionsLayout;
 
     public QuestionsController(QuestionsActivity activity) {
         questionsActivity = activity;
-        questionsLayout = new QuestionsLayout(questionsActivity, this);
+
+        DaggerQuestionsController_Component.builder()
+                .netComponent(((ImmigrationApp) questionsActivity.getApplicationContext()).getNetComponent())
+                .questionsControllerModule(new QuestionsControllerModule(questionsActivity, this))
+                .build()
+                .inject(this);
+        retrofit.create(ImmigrationApi.class).getNodes()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(questionsLayout);
     }
 
     @Override
@@ -25,5 +51,29 @@ public class QuestionsController implements QuestionsLayout.Listener {
     @Override
     public void onNoButtonClicked() {
         Log.d("Testing buttons", "no");
+    }
+
+    @PerController
+    @dagger.Component(dependencies = NetComponent.class, modules = QuestionsControllerModule.class)
+    interface Component {
+        void inject(QuestionsController questionsController);
+    }
+
+    @Module
+    static class QuestionsControllerModule {
+        private final QuestionsActivity questionsActivity;
+        private final QuestionsLayout.Listener listener;
+
+        public QuestionsControllerModule(
+                QuestionsActivity questionsActivity,
+                QuestionsLayout.Listener listener) {
+            this.questionsActivity = questionsActivity;
+            this.listener = listener;
+        }
+
+        @Provides
+        QuestionsLayout providesQuestionsLayout() {
+            return new QuestionsLayout(questionsActivity, listener);
+        }
     }
 }

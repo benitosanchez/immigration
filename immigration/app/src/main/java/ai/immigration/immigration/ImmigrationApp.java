@@ -16,9 +16,13 @@ public class ImmigrationApp extends Application {
         super.onCreate();
 
         mNetComponent = DaggerNetComponent.builder()
-                .netModule(new NetModule("http://immigration.ai"))
+                .netModule(new NetModule("https://storage.googleapis.com"))
                 .appModule(new AppModule(this))
                 .build();
+    }
+
+    public NetComponent getNetComponent() {
+        return mNetComponent;
     }
 
 }
