@@ -40,6 +40,17 @@
 
 
         <ImageButton
+            android:id="@+id/green_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/button_style"
+            app:srcCompat="@drawable/ic_home"
+            tools:layout_editor_absoluteX="144dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+
+        <ImageButton
             android:id="@+id/travel_visa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,16 +69,6 @@
             app:srcCompat="@drawable/ic_daca"
             tools:layout_editor_absoluteX="144dp"
             tools:layout_editor_absoluteY="209dp" />
-
-        <ImageButton
-            android:id="@+id/green_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/button_style"
-            app:srcCompat="@drawable/ic_home"
-            tools:layout_editor_absoluteX="144dp"
-            tools:layout_editor_absoluteY="10dp" />
 
 
     </LinearLayout>
