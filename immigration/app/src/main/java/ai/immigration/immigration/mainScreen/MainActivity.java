@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDacaRenewal = (ImageButton) findViewById(R.id.daca_renewal);
-        mDacaRenewal.setOnClickListener(new View.OnClickListener() {
+        mGreenCard = (ImageButton) findViewById(R.id.green_card);
+        mGreenCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QuestionsActivity.class);
